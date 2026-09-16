@@ -1,6 +1,10 @@
+### Contrato CRUD de `/productos`
 
-Mini-contrato: GET /productos
-Recurso:	/productos
-Verbo:	GET
-Respuesta 200:	Lista de { id, nombre, precio }
-Respuesta de error:	500 si falla el servidor
+| Operación | Verbo | URI | Éxito |
+|---|---|---|---|
+| Listar | GET | `/api/v1/productos` | 200 |
+| Obtener uno | GET | `/api/v1/productos/{id}` | 200 / 404 |
+| Crear | POST | `/api/v1/productos` | 201 + Location |
+| Reemplazar | PUT | `/api/v1/productos/{id}` | 204 |
+| Actualizar parcial | PATCH | `/api/v1/productos/{id}` | 200 |
+| Eliminar | DELETE | `/api/v1/productos/{id}` | 204 / 404 |
