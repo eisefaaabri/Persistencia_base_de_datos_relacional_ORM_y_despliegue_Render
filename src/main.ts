@@ -7,15 +7,21 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.setGlobalPrefix('api/v1');
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
+  );
 
   const config = new DocumentBuilder()
-    .setTitle('API Productos')
-    .setDescription('API de catalogo de productos - Semana 1')
+    .setTitle('API de Productos (con persistencia)')
+    .setDescription('CRUD de productos sobre PostgreSQL + TypeORM')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api/docs', app, document);
+  SwaggerModule.setup('swagger', app, document);
 
   await app.listen(3000);
 }
